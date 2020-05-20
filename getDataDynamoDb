@@ -1,0 +1,16 @@
+const documentClient = new AWS.DynamoDB.DocumentClient();
+const AWS = require("aws-sdk");
+
+exports.handler = async(event) => {
+    try {
+        const data = await documentClient.scan({ TableName: "nombre_tabla"}).promise();
+        return {
+            message: 'Bien Zx Ventures ya tenes dato.',
+            data: data,
+            code: 200
+        };
+    }
+    catch (e) {
+        return { message: 'fallo obtener nombre_tabla', code: 404 };
+    }
+};
